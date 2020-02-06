@@ -11,11 +11,11 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route exact path = "/register">
-          <Register />
-        </Route>
         <Route exact path = "/login">
           <Login />
+        </Route>
+        <Route exact path = "/register">
+          <Register />
         </Route>
         <Route exact path = "/">
           <Realtimepricetable />

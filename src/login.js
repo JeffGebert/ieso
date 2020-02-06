@@ -30,7 +30,7 @@ const LoginPage = function(props) {
       })
       .then(() => {
 
-        history.push("/prices")
+        history.push("/")
       })
       .catch(error => console.log("error"));
   }

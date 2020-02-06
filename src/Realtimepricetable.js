@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import './App.css';
 import axios from 'axios';
+import { validate } from './helpers/validate';
+import jwt_decode from "jwt-decode";
+import { Link, withRouter, useHistory } from "react-router-dom";
 
 
-function App() {
+
+function Realtimepricetable() {
 
   const [price, setPrice] = useState([]);
   const [load, setLoad] = useState(false);
@@ -13,7 +16,17 @@ function App() {
       
       
       useEffect(() => {
-        console.log("refresh")
+        let token = localStorage.getItem("id_token");
+        let loginInfo = jwt_decode(token)
+        validate(loginInfo.email, loginInfo.last_signin).then(res=>{
+          console.log("res", res)
+          if (res === true) {
+          console.log(" test validated")
+        } else {
+          console.log("not validated")
+        }
+      })
+
         axios
           .get(`http://localhost:3000/prices`)
           .then(res => {
@@ -57,4 +70,5 @@ function App() {
   );
 }
 
-export default App;
+export default Realtimepricetable;
+
